@@ -4,5 +4,4 @@ RUN mkdir /config
 COPY requirements /config/requirements
 RUN pip install -r /config/requirements/dev.txt
 RUN mkdir /src
-RUN mkdir /deploy
 WORKDIR /src
