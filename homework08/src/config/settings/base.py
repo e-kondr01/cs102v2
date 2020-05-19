@@ -13,7 +13,13 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 import os
 from decouple import config
 
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+def root(*dirs):
+    base_dir = os.path.join(os.path.dirname(__file__), '..', '..')
+    return os.path.abspath(os.path.join(base_dir, *dirs))
+
+
+BASE_DIR = root()
 
 SECRET_KEY = config('SECRET_KEY')
 
@@ -24,6 +30,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'notes',
 ]
 
 MIDDLEWARE = [
@@ -41,7 +48,7 @@ ROOT_URLCONF = 'config.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [root('templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -87,4 +94,4 @@ USE_TZ = True
 
 
 STATIC_URL = '/static/'
-STATIC_ROOT = 'C:\\Users\\Кондрашовы\\cs102v2\\homework08\\static'
+STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'static')
