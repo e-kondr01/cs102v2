@@ -26,6 +26,10 @@ services:
         image: postgres:latest
         container_name: pg01
         environment:
-            - POSTGRES_DB=postgres 
+            - POSTGRES_DB=new_postgres 
             - POSTGRES_USER=postgres
             - POSTGRES_PASSWORD=1234
+        volumes:
+            - db-data:/var/lib/postgresql/data
+volumes:
+  db-data:

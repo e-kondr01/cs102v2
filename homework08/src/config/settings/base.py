@@ -30,7 +30,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'widget_tweaks',
+
     'notes',
+    'accounts'
 ]
 
 MIDDLEWARE = [
@@ -79,6 +82,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+AUTH_USER_MODEL = 'accounts.User'
 
 ALLOWED_HOSTS = ['*']
 
@@ -95,3 +99,8 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'static')
+STATICFILES_DIRS = [
+ root('static'),
+]
+
+LOGIN_REDIRECT_URL = '/'
