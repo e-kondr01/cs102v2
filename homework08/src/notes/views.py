@@ -37,7 +37,10 @@ class NoteDetail(LoginRequiredMixin, DetailView):
         return super(NoteDetail, self).dispatch(*args, **kwargs)
 
     def get_queryset(self):
-        return Note.objects.filter(owner=self.request.user)
+        return Note.objects.filter(access=self.request.user)
+    # В access должен быть список пользователей
+    # Note.access.append(owner)
+    #filter request.user in access
 
 
 class NoteCreate(LoginRequiredMixin, NoteMixin, CreateView):
@@ -68,9 +71,9 @@ class NoteUpdate(LoginRequiredMixin, NoteMixin, UpdateView):
 
 
 class NoteDelete(LoginRequiredMixin, DeleteView):
- 
+
     model = Note
     success_url = reverse_lazy('notes:create')
- 
+
     def get_queryset(self):
         return Note.objects.filter(owner=self.request.user)

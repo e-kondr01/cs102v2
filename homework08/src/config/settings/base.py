@@ -30,6 +30,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
     'widget_tweaks',
     'django_wysiwyg',
     'rest_framework',
@@ -118,3 +119,10 @@ STATICFILES_DIRS = [
 LOGIN_REDIRECT_URL = '/'
 
 DJANGO_WYSIWYG_FLAVOR = 'ckeditor'
+
+"""Confirmation email settings """
+EMAIL_HOST = config('EMAIL_SENDER_HOST')
+EMAIL_PORT = config('EMAIL_SENDER_PORT')
+EMAIL_HOST_USER = config('EMAIL_SENDER')
+EMAIL_HOST_PASSWORD = config('EMAIL_SENDER_PASSWORD')
+EMAIL_USE_SSL = True
