@@ -9,10 +9,11 @@ class Note(models.Model):
     title = models.CharField(max_length=200)
     body = models.TextField()
     pub_date = models.DateTimeField('date published', auto_now_add=True)
-    owner = models.ForeignKey(User, related_name='notes',
+    owner = models.ForeignKey(User, related_name='note_owner',
                               on_delete=models.CASCADE, blank=True)
     tags = models.CharField(blank=True, max_length=200)
-    access = models.CharField(max_length=2000, blank=True)
+    access = models.CharField(max_length=200,
+                              blank=True)
 
     def __str__(self):
         return self.title
