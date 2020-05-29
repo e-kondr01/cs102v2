@@ -56,7 +56,7 @@ class IndexTests(TestCase):
         for note in response.context["latest_note_list"]:
             note_detail_url = reverse('notes:detail',
                                       kwargs={'pk': note.pk})
-        self.assertContains(response, f'href="{note_detail_url}"')
+            self.assertContains(response, f'href="{note_detail_url}"')
 
     def test_notes_ordered_by_pub_dates(self):
         self.client.login(email="test_user1@example.com", password="secret")
