@@ -17,7 +17,7 @@ services:
             - ./src:/src
             - ./deploy/uwsgi:/usr/local/etc/
             - ./static:/static
-        command: bash -c "sleep 5 && python /src/manage.py makemigrations && python /src/manage.py migrate && python /src/manage.py collectstatic --noinput && uwsgi --ini /usr/local/etc/elevennote.ini"
+        command: bash -c "sleep 3 && python /src/manage.py makemigrations && python /src/manage.py migrate && python /src/manage.py collectstatic --noinput && uwsgi --ini /usr/local/etc/elevennote.ini"
         depends_on:
             - db
         expose:
