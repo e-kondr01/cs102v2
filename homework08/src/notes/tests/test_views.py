@@ -32,7 +32,8 @@ class IndexTests(TestCase):
                 title=f"Note title {i}",
                 body="Note description",
                 pub_date=now + datetime.timedelta(days=i),
-                owner=self.test_user1))
+                owner=self.test_user1,
+                access=self.test_user1))
 
     def test_redirect_if_not_logged_in(self):
         index_page_url = reverse('notes:index')
@@ -103,7 +104,8 @@ class DetailTests(TestCase):
             email="test_user2@example.com",
             password="secret")
         self.note = Note.objects.create(
-            title="Note title", body="Note description", owner=self.test_user1)
+            title="Note title", body="Note description", owner=self.test_user1,
+            access=self.test_user1)
 
     def test_redirect_if_not_logged_in(self):
         detail_page_url = reverse('notes:detail', kwargs={'pk': self.note.pk})
@@ -260,7 +262,8 @@ class UpdateViewTest(TestCase):
             password="secret")
 
         self.note = Note.objects.create(
-            title="Note title", body="Note description", owner=self.test_user1)
+            title="Note title", body="Note description", owner=self.test_user1,
+            access=self.test_user1)
 
     def test_response_contains_notes_list(self):
         self.client.login(email="user@example.com", password="secret")
